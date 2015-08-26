@@ -38,6 +38,4 @@ for x in xrange(1,53):
 		no+=1
 
 
-
-
 fo.close()
