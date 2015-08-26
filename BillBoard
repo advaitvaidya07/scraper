@@ -1,0 +1,43 @@
+import urllib
+import re
+
+
+fo=open('billboard2014.txt','a+')
+
+year=2014
+month=1
+day=4
+
+for x in xrange(1,53):
+	
+	date=
+
+
+	url=urllib.urlopen('http://www.billboard.com/charts/hot-100/'+date)
+	d=url.read()
+
+	no=1
+
+	for x in xrange(1,101):
+		nom="row-"+str(no)
+		nom='"'+nom+'"'
+		
+		
+		regex = '<article id='+nom+' class="chart-row" data-hovertracklabel=(.+?)>'
+		
+		p=re.compile(regex)
+		f=re.findall(p,d)
+		if (f==[]):
+			regex = '<article id='+nom+' class="chart-row row-new" data-hovertracklabel=(.+?)>'
+			p=re.compile(regex)
+			f=re.findall(p,d)
+			print(str(no)+'='+f[0][12:-1])
+		else:
+			print(str(no)+'='+f[0][12:-1])
+		
+		no+=1
+
+
+
+
+fo.close()
