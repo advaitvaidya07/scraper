@@ -1,0 +1,28 @@
+import urllib
+import re
+
+
+fo=open('itebooks1.txt','a+')
+
+page=2739
+
+
+
+for x in xrange(1,6012):
+	url=urllib.urlopen('http://it-ebooks.info/book/'+str(page)+'/')
+	d=url.read()
+	regex='<h1 itemprop="name">(.+?)</h1>'
+	p=re.compile(regex)
+	f=re.findall(p,d)
+	book=str(page)
+
+	page+=1
+	fo.writelines(book+' : ')
+	fo.write(str(f))
+	fo.write('\n')
+	print(book+' : '+str(f))
+	
+
+
+
+fo.close()
